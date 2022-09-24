@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register admin
+{% endblock %}
+
+{% block main %}
+<main class="sign">
+    <br>
+    <h1>Register an Admin</h1>
+    <p>Please fill in the below form to sign up another admin.</p>
+    <form action="/register-admin" method="post">
+        <input 
+            type="text" 
+            name="username" 
+            class="username inputbox" 
+            id="username" 
+            placeholder="Input your name"
+            onblur="checkUsername()"
+            ><br>
+        <p id="username-validation-warning-message" class="validation-warning-message"></p>
+        <input 
+            type="password" 
+            name="password" 
+            class="password inputbox" 
+            id="password" 
+            placeholder="Select a password"
+            onblur="checkPassword()"
+            ><br>
+        <p id="password-validation-warning-message" class="validation-warning-message"></p>
+        <input 
+            type="password" 
+            name="cpassword" 
+            class="username inputbox" 
+            id="cpassword" 
+            placeholder="Confirm password"
+            onblur="checkPasswordConfirmation()"
+            ><br>
+        <p id="cpassword-validation-warning-message" class="validation-warning-message"></p>
+        <input 
+            type="email" 
+            name="email" 
+            class="email inputbox" 
+            id="email" 
+            placeholder="Email (youremail@example.com)"
+            onblur=""
+            ><br>
+        <p id="email-validation-warning-message" class="validation-warning-message"></p><br>
+        <button type="submit" class="btn btn-warning" id="submit">Submit</button>
+    </form>
+   </main>
+   <script src="../static/validationscript_registerclient.js"></script>
+{% endblock %}

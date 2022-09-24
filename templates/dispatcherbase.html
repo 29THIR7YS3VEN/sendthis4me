@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    title
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <div style="display: flex; justify-content: space-between;">
+        <img src="{{ dispatcher[0]['photo'] }}" alt="dispatcher photo" class="dispatcher_photo">
+        <div style="text-align: left;">
+            <h1>Dispatcher Information: #{{ dispatcher[0]["id"] }}<br>{{ dispatcher[0]["username"] }}</h1>
+            {% if dispatcher[0]["acceptance"] == "false"%}
+            <a href="/verify-dispatcher/{{ dispatcher[0]['id'] }}"><button type="button" class="btn btn-warning">Verify</button></a>
+            <a href="/delete-dispatcher/{{ dispatcher[0]['id'] }} "><button type="button" class="btn btn-danger">Delete</button></a>
+            {% else %}
+            <a href="/suspend-dispatcher/{{ dispatcher[0]['id'] }}"><button type="button" class="btn btn-warning">Suspend</button></a>
+            <a href="/delete-dispatcher/{{ dispatcher[0]['id'] }} "><button type="button" class="btn btn-danger">Delete</button></a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <br><br>
+    <h2>Account Information</h2>
+    <hr>
+    <p>Name: {{ dispatcher[0]["username"] }}</p>
+    <p>Phone: {{ dispatcher[0]["phone"] }}</p>
+    <p>Email: {{ dispatcher[0]["email"] }}</p>
+    <p>Address: {{ dispatcher[0]["dispatcher_address"] }}</p>
+    <p>Email Verified: {{ dispatcher[0]["email_verified"] }}</p>
+    <br>
+    <h2>Work Information</h2>
+    <hr>
+    <p>Expected number of orders per week: {{ dispatcher[0]["orders_per_week"] }}</p>
+    <p>Vehicle used: {{ dispatcher[0]["vehicle"] }}</p>
+    <br>
+    <h2>Identity Information</h2>
+    <hr>
+    <h4>Passport/Id Card</h4>
+    <p>Number: {{ dispatcher[0]["passport_number"] }}</p>
+    <a href="{{ dispatcher[0]['passport_photo_path'] }}">
+        <img src="{{ dispatcher[0]['passport_photo_path'] }}" alt="passport" style="padding: 20px; width: 400px; height:auto; border:2px dotted #FFC107;"><br>
+    </a>
+    <br><br>
+    <h4>Driver's Licence (if applicable)</h4>
+    <p>Number: {{ dispatcher[0]["licence_number"] }}</p>
+    <a href="{{ dispatcher[0]['licence_photo_path'] }}">
+        <img src="{{ dispatcher[0]['licence_photo_path'] }}" alt="passport" style="padding: 20px; width: 400px; height:auto; border:2px dotted #FFC107;"><br>
+    </a>
+</main>
+{% endblock %}

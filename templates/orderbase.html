@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    title
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Order Information: #{{ order[0]["id"] }}</h1>
+        <p class="order-status-unconfirmed">
+            {% if order[0]["order_status"] == 0 %}
+                Draft
+                {% elif order[0]["order_status"] == 1 %}
+                Awaiting acceptance
+                {% elif order[0]["order_status"] == 2 %}
+                Accepted
+                {% elif order[0]["order_status"] == 3 %}
+                On way to pickup
+                {% elif order[0]["order_status"] == 4 %}
+                At pickup location
+                {% elif order[0]["order_status"] == 5 %}
+                On way
+                {% elif order[0]["order_status"] == 6 %}
+                At receiver location
+                {% elif order[0]["order_status"] == 7 %}
+                Successful
+                {% elif order[0]["order_status"] == 8 %}
+                Cancelled
+                {% endif %}
+        </p>
+    </div>
+    {% if session["user_id"] %}
+        {% if session.role == "dispatcher" %}
+            {% if order[0]["order_status"] == 1 %}
+            <a href="/accept-order/{{ order[0]['id'] }}"><button type="button" class="btn btn-warning">Accept</button></a>
+            {% else %}
+            <a href= "/update-order/{{ order[0]['id'] }}"><button type="button" class="btn btn-warning">Change Status</button></a>
+            <a href="/abort-order/{{ order[0]['id'] }}"><button type="button" class="btn btn-danger">Abort</button></a>
+            {% endif %}
+        {% else %}
+            {% if order[0]["order_status"] == 0 %}
+            <a href="/confirm-order/{{ order[0]['id'] }}"><button type="button" class="btn btn-warning">Confirm</button></a>
+            <a href="/delete-order/{{ order[0]['id'] }}"><button type="button" class="btn btn-danger">Delete</button></a>
+            {% else %}
+            <a href=""><button type="button" class="btn btn-warning">Cancel</button></a>
+            {% endif %}
+        {% endif %}
+    {% else %}
+    {% endif %}
+    <br><br>
+    <br><br>
+    <h2>Timeline</h2>
+    <hr>
+    <ul>
+        {% if order[0]["order_status"] == 0 %}
+        <p>No action has been taken on this order yet</p>
+        {% else %}
+            {% if order[0]["order_status"] == 8 %}
+            <li class="timeline-entry">
+                {{ order[0]["time3"] }}: Order cancelled.
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 7 %}
+            <li class="timeline-entry">
+                {{ order[0]["time7"] }}: Order Successful.
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 6 %}
+            <li class="timeline-entry">
+                {{ order[0]["time6"] }}: {{ name }} has arrived at destination
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 5 %}
+            <li class="timeline-entry">
+                {{ order[0]["time5"] }}: {{ name }} on the way to deliver the parcel
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 4 %}
+            <li class="timeline-entry">
+                {{ order[0]["time4"] }}: {{ name }} has arrived at pickup location
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 3 %}
+            <li class="timeline-entry">
+                {{ order[0]["time3"] }}: {{ name }} is on way to pickup package
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 2 %}
+            <li class="timeline-entry">
+                Order accepted by {{ name }} at {{ order[0]["time2"] }}
+            </li>
+            {%endif%}
+            {% if order[0]["order_status"] >= 1 %}
+            <li class="timeline-entry">
+                Order placed at {{ order[0]["created"] }}
+            </li>
+            {%endif%}
+        {% endif %}
+    </ul>
+
+    <br><br>
+    <h2>Order Details</h2>
+    <hr>
+    <table>
+        <tr>
+            <td>Order Id:</td>
+            <td>#{{ order[0]["id"] }}</td>
+        </tr>
+        <tr>
+            <td>Sender name:</td>
+            <td>{{ order[0]["sender_name"] }}</td>
+        </tr>
+        <tr>
+            <td>Sender phone number:</td>
+            <td>{{ order[0]["sender_phone"] }}</td>
+        </tr>
+        <tr>
+            <td>Sender address:</td>
+            <td>{{ order[0]["sender_address"] }}</td>
+        </tr>
+        <tr><td>-</td></tr>
+        <tr>
+            <td>Receiver name:</td>
+            <td>{{ order[0]["receiver_name"] }}</td>
+        </tr>
+        <tr>
+            <td>Receiver phone number:</td>
+            <td>{{ order[0]["sender_phone"] }}</td>
+        </tr>
+        <tr>
+            <td>Receiver address</td>
+            <td>{{ order[0]["receiver_address"] }}</td>
+        </tr>
+        <tr><td>-</td></tr>
+        <tr>
+            <td>Package type</td>
+            <td>{{ order[0]["package_category"] }}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ order[0]["content"] }}</td>
+        </tr>
+        <tr>
+            <td>Notes</td>
+            <td>{{ order[0]["notes"] }}</td>
+        </tr>
+    </table>
+</main>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+        </style>
+    </head>
+    <body style="margin: 20px 200px; font-family: 'Lato', sans-serif !important;">
+        <main class="in">
+            <img src="http://127.0.0.1:5000/static/images/boxes.png" alt="boxes" style="width: 100%; height: auto;">
+            <h1 style="color: #FFC107">We've successfully verified your email.</h1>
+            <p>Hello, {{ newuser[0]['username'] }}</p>
+            <p>Thank you for signing up with us. Before you can start working with us, the admins will need to activate your account. This an take anywhere from 1-5 working days.</p>
+            <p>Best,<br>The Sendthis4me team</p>
+        </main>
+    </body>
+</html>

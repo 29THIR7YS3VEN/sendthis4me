@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign up as sender
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <br>
+    <h1>Sign Up as a dispatcher</h1>
+    <p>As a dispatcher, your job is like that of a freelance delivery man. You accept orders when they're convenient for you. Fill in the below form to sign up.</p>
+    <br>
+    <form action="/sender-register" method="POST" enctype = "multipart/form-data">
+        <h2>General</h2>
+        <hr>
+        <div>
+            <h4>Account Information</h4>
+            <p>To get you signed up</p>
+            <input 
+                type="text" 
+                name="username" 
+                class="username inputbox2" 
+                id="username" 
+                placeholder="Input your full name"
+                onblur="checkUsername();"
+                ><br>
+            <p id="username-validation-warning-message" class="validation-warning-message"></p>
+            <input 
+                type="password" 
+                name="password" 
+                class="password inputbox2" 
+                id="password" 
+                placeholder="Select a password"
+                onblur="checkPassword();"
+                ><br>
+            <p id="password-validation-warning-message" class="validation-warning-message"></p>
+            <input 
+                type="password" 
+                name="cpassword" 
+                class="username inputbox2" 
+                id="cpassword" 
+                placeholder="Confirm password"
+                onblur="checkPasswordConfirmation();"
+                ><br>
+            <p id="cpassword-validation-warning-message" class="validation-warning-message"></p>
+            <input 
+                type="email" 
+                name="email" 
+                class="email inputbox2" 
+                id="email" 
+                placeholder="Email (youremail@example.com)"
+                onblur=""
+                ><br>
+            <p id="email-validation-warning-message" class="validation-warning-message"></p>
+            <input 
+                type="tel" 
+                name="phone" 
+                class="phone inputbox2"
+                id="phone" 
+                placeholder="Input your phone number"
+                onblur=""
+                ><br>
+            <p id="phone-validation-warning-message" class="validation-warning-message"></p>
+            <input 
+                type="text" 
+                name="address" 
+                class="city inputbox2" 
+                id="city" 
+                placeholder="Address"><br>
+            <p class="validation-warning-message"></p>
+        </div>
+        <br>
+        <h2>Work Details</h2>
+        <hr>
+        <div>
+            <h4>Availibility</h4>
+            <p>How often you'll be able to work</p>
+            <select name="week_availibility" class="inputbox2" id="type">
+                <option value="select">How many orders can you deliver per week?</option>
+                <option value="0 - 7">0 - 7</option>
+                <option value="7 - 21">7 - 21</option>
+                <option value="21 - 35">21 - 35</option>
+                <option value="not sure">I'm not sure</option>
+            </select><br><br>
+            <h4>Means of delivery</h4>
+            <p>The vehicle you'll usually use to deliver parcels</p>
+            <select name="vehicle" class="inputbox2" id="type">
+                <option value="select">Delivery vehicle used</option>
+                <option value="Bicycle">Bicycle</option>
+                <option value="Motorbike">Motorbike</option>
+                <option value="Car">Car</option>
+                <option value="Van">Other</option>
+            </select><br><br>
+        </div>
+        <br>
+        <h2>Identity Information</h2>
+        <p>Sendthis4me takes this information to ensure the platform isn't used for stealing or other malicious attempts. This information will not be disclosed or sold.</p>
+        <hr>
+        <div>
+            <h4>Passport/ID Card</h4>
+            <p>Please input the information as prompted and upload a photo of your ID card/Passport.</p>
+            <input 
+                type="text" 
+                name="id_number" 
+                class="city inputbox2" 
+                id="city" 
+                placeholder="ID Card/Passport Number"><br><br>
+            <input 
+                type="file" 
+                name="photo_passport" 
+                class="city inputbox2" 
+                id="city"><br><br>
+            <h4>Licence (if applicable)</h4>
+            <p>Please input the information as prompted and upload a photo of your Licence</p>
+            <input 
+                type="text" 
+                name="licence_number" 
+                class="city inputbox2" 
+                id="city" 
+                placeholder="vehicle licence number (if applicable)"><br><br>
+            <input 
+                type="file" 
+                name="licence_photo" 
+                class="city inputbox2" 
+                id="city"><br><br>
+            <h4>Photo</h4>
+            <p>Please upload a clear photo (selfie!) of yourself in .png, .jpg, or .jpeg format</p>
+            <input 
+                type="file" 
+                name="photo" 
+                class="city inputbox2" 
+                id="city"><br><br>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-warning" id="submit">Submit</button>
+    </form>
+</main>
+<script src="../static/validationscript_registersender.js"></script>
+{% endblock %}

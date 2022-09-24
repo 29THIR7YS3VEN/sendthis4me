@@ -1,0 +1,2 @@
+^C
+flask run

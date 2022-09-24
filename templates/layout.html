@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/master.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>SendThis4Me: {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-light fixed-top">
+        <div class="container-fluid">
+            <a href="/" style="text-decoration: none;"><h1 class="navbar-brand">SendThis4Me</h1></a>
+            {% if session.user_id %}
+            <div style="display: flex ; justify-content: space-around; width: 70%; align-items: center;">
+                {% if session.role == "sender" %}
+                <div class="nav-item">
+                    <a class="nav-link">Welcome, {{ username }}</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/sender-dashboard">Dashboard</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/sender-settings">Settings</a>
+                </div>
+                <a href="/new-order"><button type="button" class="btn btn-warning">New order</button></a>
+                <div class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </div>
+                {% elif session.role == "dispatcher" %}
+                <div class="nav-item">
+                    <a class="nav-link">Welcome, {{ username }}</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/dispatcher-dashboard">Dashboard</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/dispatcher-settings">Settings</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </div>
+                {% else %}
+                <div class="nav-item">
+                    <a class="nav-link" href="">Welcome, {{ username }}</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/admin-dashboard">Dashboard</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/register-admin">Register Admin</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <div style="display: flex ; justify-content: space-around; width: 30%;">
+                <div class="nav-item">
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="/signin">Sign In</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    {% if get_flashed_messages() %}
+    <div style="margin-top:75px; margin-bottom: -100px; background-color: rgb(255, 187, 0); width: 100%; padding:10px; text-align: center;">
+        {{ get_flashed_messages() | join(" ") }}
+    </div><br>
+    {% endif %}
+    {% block main %}
+
+    {% endblock %}
+</body>
+</html>

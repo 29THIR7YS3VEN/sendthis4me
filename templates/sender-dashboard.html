@@ -1,0 +1,176 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard - Dispatcher
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <h1>Dispatcher Dashboard</h1>
+    <br><br>
+    <h2>Accepted Orders</h2>
+    <section class="unconfirmed orders">
+      {% if pending|length == 0 %}
+      <p>You haven't accepted any orders yet. Go ahead and accept one!</p>
+      {% else %}
+        {% for i in range(pending|length) %}
+        <div class="order-container">
+          <div class="order-top">
+            <h5 class="order-id">Id: {{ pending[i]["id"] }}</h5>
+            <p class="order-status-unconfirmed">
+              {% if pending[i]["order_status"] == 0 %}
+                Draft
+                {% elif pending[i]["order_status"] == 1 %}
+                Awaiting acceptance
+                {% elif pending[i]["order_status"] == 2 %}
+                Accepted
+                {% elif pending[i]["order_status"] == 3 %}
+                On way to pickup
+                {% elif pending[i]["order_status"] == 4 %}
+                At pickup location
+                {% elif pending[i]["order_status"] == 5 %}
+                On way
+                {% elif pending[i]["order_status"] == 6 %}
+                At receiver location
+                {% elif pending[i]["order_status"] == 7 %}
+                Successful
+                {% elif pending[i]["order_status"] == 8 %}
+                Cancelled
+                {% endif %}
+            </p>
+          </div>
+          <div class="order-body">
+            <div class="order-body-col">
+              <h5>Sender:</h5>
+              <p class="sender-name">{{ pending[i]["sender_name"] }}<br>
+              <p class="sender-address">{{ pending[i]["sender_address"] }}</p>
+            </div>
+            <div class="order-body-col">
+              <h5>Reciever:</h5>
+              <p class="receiver-name">{{ pending[i]["receiver_name"] }}</p>
+              <p class="receiver-address">{{ pending[i]["receiver_address"] }}</p>
+            </div>
+          </div>
+          <div class="order-footer">
+            <p class="dates">{{ pending[i]["created"] }}</p>
+            <div class="order-footer-actions">
+              <a href="/order/{{ pending[i]['id'] }}"><button type="button" class="btn btn-warning">View</button></a>
+              <a href="/update-order/{{ pending[i]['id'] }}"><button type="button" class="btn btn-warning">Update Status</button></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+
+      <h2>Available for Accepting</h2>
+      <section class="unconfirmed orders">
+      {% if available|length == 0 %}
+      <p>No available orders at this time</p>
+      {% else %}
+        {% for i in range(available|length) %}
+        <div class="order-container">
+          <div class="order-top">
+            <h5 class="order-id">Id: {{ available[i]["id"] }}</h5>
+            <p class="order-status-unconfirmed">
+              
+              {% if available[i]["order_status"] == 0 %}
+              Draft
+              {% elif available[i]["order_status"] == 1 %}
+              Awaiting acceptance
+              {% elif available[i]["order_status"] == 2 %}
+              Accepted
+              {% elif available[i]["order_status"] == 3 %}
+              On way to pickup
+              {% elif available[i]["order_status"] == 4 %}
+              At pickup location
+              {% elif available[i]["order_status"] == 5 %}
+              On way
+              {% elif available[i]["order_status"] == 6 %}
+              At receiver location
+              {% elif available[i]["order_status"] == 7 %}
+              Successful
+              {% elif available[i]["order_status"] == 8 %}
+              Cancelled
+              {% endif %}
+            </p>
+          </div>
+          <div class="order-body">
+            <div class="order-body-col">
+              <h5>Sender:</h5>
+              <p class="sender-name">{{ available[i]["sender_name"] }}<br>
+              <p class="sender-address">{{ available[i]["sender_address"]}}</p>
+              </p>
+            </div>
+            <div class="order-body-col">
+              <h5>Reciever:</h5>
+              <p class="receiver-name">{{ available[i]["receiver_name"] }}</p>
+              <p class="receiver-address">{{ available[i]["receiver_address"] }}</p>
+            </div>
+          </div>
+          <div class="order-footer">
+            <p class="dates">{{ available[i]["created"] }}</p>
+            <div class="order-footer-actions">
+              <a href="/order/{{ available[i]['id'] }}"><button type="button" class="btn btn-warning">View</button></a>
+              <a href="/accept-order/{{ available[i]['id'] }}"><button type="button" class="btn btn-warning">Accept</button></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+      </section>
+
+      <h2>Completed</h2>
+      <section class="unconfirmed orders">
+      {% if completed|length == 0 %}
+      <p>You haven't completed any orders yet</p>
+      {% else %}
+        {% for i in range(completed|length) %}
+        <div class="order-container">
+          <div class="order-top">
+            <h5 class="order-id">Id: {{ completed[i]["id"] }}</h5>
+            <p class="order-status-unconfirmed">
+              {% if completed[i]["order_status"] == 0 %}
+                Draft
+                {% elif completed[i]["order_status"] == 1 %}
+                Awaiting acceptance
+                {% elif completed[i]["order_status"] == 2 %}
+                Accepted
+                {% elif completed[i]["order_status"] == 3 %}
+                On way to pickup
+                {% elif completed[i]["order_status"] == 4 %}
+                At pickup location
+                {% elif completed[i]["order_status"] == 5 %}
+                On way
+                {% elif completed[i]["order_status"] == 6 %}
+                At receiver location
+                {% elif completed[i]["order_status"] == 7 %}
+                Successful
+                {% elif completed[i]["order_status"] == 8 %}
+                Cancelled
+                {% endif %}
+            </p>
+          </div>
+          <div class="order-body">
+            <div class="order-body-col">
+              <h5>Sender:</h5>
+              <p class="sender-name">{{ completed[i]["sender_name"] }}<br>
+              <p class="sender-address">{{ completed[i]["sender_address"] }}</p>
+            </div>
+            <div class="order-body-col">
+              <h5>Reciever:</h5>
+              <p class="receiver-name">{{ completed[i]["receiver_name"] }}</p>
+              <p class="receiver-address">{{ completed[i]["receiver_address"] }}</p>
+            </div>
+          </div>
+          <div class="order-footer">
+            <p class="dates">{{ completed[i]["created"] }}</p>
+            <div class="order-footer-actions">
+              <a href="/order/{{ completed[i]['id'] }}"><button type="button" class="btn btn-warning">View</button></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+      </section>
+   </main>
+{% endblock %}

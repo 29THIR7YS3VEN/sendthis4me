@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sender settings
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <h1>User settings</h1><br><br>
+    <h2>Change password</h2><hr>
+    <form action="/change-password-dispatcher" method="post">
+        <input 
+            type="password" 
+            name="old-pass" 
+            class="username inputbox2" 
+            id="username" 
+            placeholder="Input your old password"
+            ><br><br>
+        <input 
+            type="password" 
+            name="new-pass" 
+            class="password inputbox2" 
+            id="password" 
+            placeholder="Select a new password"
+            onblur="checkPassword();"
+            ><br>
+        <p id="password-validation-warning-message" class="validation-warning-message"></p>
+        <input 
+            type="password" 
+            name="cpassword" 
+            class="inputbox2" 
+            id="cnew-pass" 
+            placeholder="Confirm new password"
+            onblur="checkPasswordConfirmation();"
+            ><br>
+        <p id="cpassword-validation-warning-message" class="validation-warning-message"></p>
+        <button type="submit" class="btn btn-warning">Change Password</button>
+    </form>
+    <br><br><br>
+</main>
+<script src="../static/validationscript_registersender.js"></script>
+{% endblock %}

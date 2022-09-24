@@ -1,0 +1,140 @@
+*{
+    margin: none;
+    padding: none;
+}
+
+body{
+    font-family: 'Lato', sans-serif !important;
+}
+nav{
+    box-shadow: 1px 0px 5px rgb(232, 232, 232);
+    align-items: center;
+    height: 75px;
+    background-color: white;
+}
+.container-fluid{
+    margin: auto 180px !important;
+}
+nav h1{
+    color:#FFC107 !important;
+}
+header{
+    margin: 75px 150px;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+}
+header h1{
+    color: #FFC107;
+    font-weight: 700;
+}
+header div{
+    width: 60%;
+}
+header div h1{
+    font-size: 65px;
+}
+.header-clipart{
+    max-width: 105%;
+}
+.sign{
+    margin-top: 75px;
+    padding: 30px 150px;
+    text-align: center;
+}
+.in{
+    margin-top: 75px;
+    padding: 30px 250px;
+    text-align: left;
+}
+.inputbox{
+    margin: 0px;
+    width: 40%;
+    padding: 10px;
+    border: 2px dashed #FFC107;
+}
+.inputbox2{
+    margin: 0px;
+    width: 60%;
+    padding: 10px;
+    border: 2px dashed #FFC107;
+}
+h2{
+    color:#FFC107;
+}
+footer{
+    box-shadow: 1px 0px 5px rgb(232, 232, 232);
+    align-items: center;
+    height: 200px;
+    background-color: white;
+}
+.validation-warning-message{
+    color: red;
+    text-align: center;
+    font-size: 15px;
+}
+tr{
+ align-items: center;
+}
+.order-container{
+    width: 100%;
+    border: 1px dashed #FFC107;
+    padding: 15px 25px;
+    margin: 20px 0px;
+}
+.order-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid silver;
+    padding: 10px;
+}
+.order-body{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+.order-body-col{
+    width: 50%;
+    padding: 5px;
+}
+.order-container p{
+    margin: 0px;
+}
+.order-container h5{
+    margin: 0px;
+    color: grey;
+}
+.order-status-unconfirmed{
+    padding: 2px 10px;
+    border-radius: 20px;
+    background-color: red;
+}
+.order-status-inprogress{
+    padding: 2px 10px;
+    border-radius: 20px;
+    color: white;
+    background-color: blue;
+}
+.dates{
+    color: grey;
+}
+.order-footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 0px 10px;
+    align-items: baseline;
+}
+td{
+    font-size: 18px;
+    padding: 2px 15px 2px 0px;
+}
+.timeline-entry{
+    color:#FFC107;
+    size: 18px;
+}
+.dispatcher_photo{
+    height: 160px;
+    width: 160px;
+}

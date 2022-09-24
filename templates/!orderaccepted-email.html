@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+        </style>
+    </head>
+    <body style="margin: 20px 200px; font-family: 'Lato', sans-serif !important;">
+        <main class="in">
+            <img src="http://127.0.0.1:5000/static/images/boxes.png" alt="boxes" style="width: 100%; height: auto;">
+            <h1 style="color: #FFC107">Order accepted by dispatcher.</h1>
+            <p>Hello, {{ sender }}</p>
+            <p>Your order (id:{{ order[0]["id"] }}) has been accepted by dispatcher {{ dispatcher }}.</p>
+            <br><br>
+            <p>Happy sending!<br>The Sendthis4me team</p>
+        </main>
+    </body>
+</html>

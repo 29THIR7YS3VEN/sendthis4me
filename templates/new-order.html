@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Place Order
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <h1>Place New Order</h1>
+    <p>Please fill out <b>all</b> required fields</p>
+    <br>
+    <form action="/new-order" method="POST">
+      <h2>Delivery details</h2>
+      <hr>
+      <div>
+        <h4>Sender Infromation</h4>
+        <p>Information to help the dispatcher find you</p>
+        <input type="text" name="sender-name" class="sender-name inputbox2" placeholder="Sender name" value="{{ user[0]['autofill_name'] }}"><br><br>
+        <input type="text" name="sender-phone" class="sender-phone inputbox2" placeholder="Sender phone number" value="{{ user[0]['autofill_phone'] }}"><br><br>
+        <textarea name="sender-address" class="inputbox2" id="" cols="30" rows="5">{{ user[0]['autofill_address'] }}</textarea>
+        <br><br>
+        <h4>Receiver Infromation</h4>
+        <p>Information to help the dispatcher get the package to its destination</p>
+        <input type="text" name="receiver-name" class="receiver-name inputbox2" placeholder="Receiver name"><br><br>
+        <input type="text" name="receiver-phone" class="sender-phone inputbox2" placeholder="Receiver phone number"><br><br>
+        <textarea name="receiver-address" class="inputbox2" id="" cols="30" rows="5">Receiver Address</textarea>
+        <br><br>
+        <h4>Package information</h4>
+        <select name="type" class="inputbox2" id="type">
+          <option value="letter">Letter</option>
+          <option value="normal">Normal package (no more than 3 kg)</option>
+          <option value="large">Large package (anything over 3 kg)</option>
+        </select>
+        <br><br>
+        <textarea name="content" class="inputbox2" id="description" cols="30" rows="5">Breif description of package contents</textarea>
+        <br><br>
+        <textarea name="notes" class="inputbox2" id="notes" cols="30" rows="5">Any additional notes</textarea>
+        <br><br><br>
+      </div>
+      <h2>Payment Details</h2>
+      <hr>
+      <div>
+        <h4>Payment Method</h4>
+        <p>We do not accept cash on delivery at this time</p>
+        <select name="payment_method" class="inputbox2" id="type">
+          <option value="Credit card">Credit Card (VISA, Mastercard)</option>
+          <option value="Mobile money">Mobile Money</option>
+        </select><br><br>
+        <h4>Payment information</h4>
+        <p>Please make sure the information is correct</p>
+        <div id="cc">
+          <input style="width: 50% !important;" type="text" name="card_number" class="sender-name inputbox2" placeholder="Card Number">
+          <input style="width: 10% !important;" type="text" name="card_cvc" class="sender-name inputbox2" placeholder="CVC"><br><br>
+          <input type="text" name="card_name" class="sender-name inputbox2" placeholder="Card Holder Name"><br><br>
+          <input type="date" name="card_expiration" class="sender-name inputbox2" placeholder="Expiration date"><br><br>
+        </div><!--
+        <div id="momo" >
+          <input type="text" name="momo_name" class="sender-name inputbox2" placeholder="Sender Name"><br><br>
+          <input type="text" name="momo_number" class="sender-name inputbox2" placeholder="Sender Mobile Number"><br><br>
+        </div>
+      -->
+      </div>
+      <br>
+      <h5><b>Delivery Charge:</b> 1,500RWF</h5>
+      <br>
+      <button type="submit" class="btn btn-warning">Place Order</button>
+
+    </form>
+</main>
+{% endblock %}

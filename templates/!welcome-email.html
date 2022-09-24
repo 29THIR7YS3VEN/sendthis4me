@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+        </style>
+    </head>
+    <body style="margin: 20px 200px; font-family: 'Lato', sans-serif !important;">
+        <main class="in">
+            <img src="http://127.0.0.1:5000/static/images/boxes.png" alt="boxes" style="width: 100%; height: auto;">
+            <h1 style="color: #FFC107">We've successfully verified your email. Here are some steps to help you get started</h1>
+            <p>Hello, {{ newuser[0]['username'] }}</p>
+            <p>Thank you for signing up with Sendthis4me. Just in case you're wondering where to get started...</p>
+            <p>You recently used this email to sign up with Sendthis4me as a sender. You're almost ready, except for one one last thing. Click the button below to verify your email and get started.</p>
+            <a href="http://127.0.0.1:5000/verify-sender-email/{{ newuser[0]['id'] }}"><button type="button" style="padding: 15px 20px; background-color: #FFC107; border: none; color: white; border-radius: 5px;">Verify your email</button></a><br>
+            <p>Happy sending!<br>The Sendthis4me team</p>
+        </main>
+    </body>
+</html>

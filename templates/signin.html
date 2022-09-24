@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block main %}
+<main class="sign">
+    <br>
+    <h1>Sign In.</h1>
+    <p>Welcome back, whether you're a dispatcher or a sender<br>Let's get back to those parcels</p>
+    <form action="/signin" method="post">
+        <input type="text" name="username" class="username inputbox" id="username" placeholder="Username"><br>
+        <input type="password" name="password" class="password inputbox" id="password" placeholder="Password"><br><br>
+        <input type="submit" value="Sign In" class="btn btn-warning">
+    </form>
+
+   </main>
+{% endblock %}

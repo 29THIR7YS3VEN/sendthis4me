@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sender settings
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <h1>User settings</h1><br><br>
+    <h2>Change password</h2><hr>
+    <form action="/change-password-sender" method="post">
+        <input 
+            type="password" 
+            name="old-pass" 
+            class="username inputbox2" 
+            id="username" 
+            placeholder="Input your old password"
+            ><br><br>
+        <input 
+            type="password" 
+            name="new-pass" 
+            class="password inputbox2" 
+            id="password" 
+            placeholder="Select a new password"
+            onblur="checkPassword();"
+            ><br>
+        <p id="password-validation-warning-message" class="validation-warning-message"></p>
+        <input 
+            type="password" 
+            name="cpassword" 
+            class="inputbox2" 
+            id="cnew-pass" 
+            placeholder="Confirm new password"
+            onblur="checkPasswordConfirmation();"
+            ><br>
+        <p id="cpassword-validation-warning-message" class="validation-warning-message"></p>
+        <button type="submit" class="btn btn-warning">Change Password</button>
+    </form>
+    <br><br><br>
+    <h2>Autofills</h2>
+    <p>Make the process of placing a new order faster</p>
+    <hr>
+    <form action="/autofill-setup-sender" method="post">
+        <input 
+            type="text" 
+            name="sender-name" 
+            class="inputbox2"
+            placeholder="Sender name"
+            ><br><br>
+        <input 
+            type="text" 
+            name="sender-phone" 
+            class="inputbox2"
+            placeholder="Sender phone"
+            ><br><br>
+        <textarea name="sender-address" class="inputbox2" id="" cols="30" rows="5">Sender Address (This is where the dispatcher will pick up the package)</textarea><br>
+        <button type="submit" class="btn btn-warning">Set autofill</button>
+    </form>
+</main>
+<script src="../static/validationscript_registersender.js"></script>
+{% endblock %}

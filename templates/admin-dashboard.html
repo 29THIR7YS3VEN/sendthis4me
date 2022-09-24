@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Administrator Dashboard
+{% endblock %}
+
+{% block main %}
+<main class="in">
+    <h1>ADMIN DASHBOARD</h1>
+    <br><br>
+    <h2>Unverified Dispatchers</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email Verified?</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(unverified|length) %}
+            <tr>
+                <th scope="row">#{{ unverified[i]["id"] }}</th>
+                <td>{{ unverified[i]["username"] }}</td>
+                <td>{{ unverified[i]["email"] }}</td>
+                <td>{{ unverified[i]["phone"] }}</td>
+                <td>{{ unverified[i]["email_verified"] }}</td>
+                <td>
+                    <a href="/dispatcher/{{ unverified[i]['id'] }} "><button type="button" class="btn btn-warning">View</button></a>
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <br>
+    <h2>Verified Dispatchers</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in range(verified|length) %}
+            <tr>
+                <th scope="row">{{ verified[i]["id"] }}</th>
+                <td>{{ verified[i]["username"] }}</td>
+                <td>{{ verified[i]["email"] }}</td>
+                <td>{{ verified[i]["phone"] }}</td>
+                <td>
+                    <a href="/dispatcher/{{ verified[i]['id'] }} "><button type="button" class="btn btn-warning">View</button></a>
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+   </main>
+{% endblock %}
